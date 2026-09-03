@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Active Jobs - StudentGig</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar" id="navbar"></nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Active Jobs</h1>
+            <p>Jobs currently in progress</p>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('client')">My Client Jobs</div>
+            <div class="tab" onclick="showTab('freelance')">My Freelance Jobs</div>
+        </div>
+
+        <div id="clientTab">
+            <h2 style="margin-bottom:20px">Jobs I Posted</h2>
+            <div id="clientJobs"></div>
+        </div>
+        <div id="freelanceTab" style="display:none">
+            <h2 style="margin-bottom:20px">Jobs I'm Working On</h2>
+            <div id="freelanceJobs"></div>
+        </div>
+    </div>
+
+    <footer class="footer" id="footer"></footer>
+    <script src="/js/app.js"></script>
+    <script src="/js/jobs.js"></script>
+    <script>
+        function showTab(tab) {
+            document.getElementById('clientTab').style.display = tab === 'client' ? 'block' : 'none';
+            document.getElementById('freelanceTab').style.display = tab === 'freelance' ? 'block' : 'none';
+            document.querySelectorAll('.tab').forEach((t, i) => {
+                t.classList.toggle('active', (tab === 'client' && i === 0) || (tab === 'freelance' && i === 1));
+            });
+        }
+        document.addEventListener('DOMContentLoaded', loadActiveJobs);
+    </script>
+</body>
+</html>
